@@ -38,12 +38,16 @@ var App = React.createClass({
         this.setState({tags: tags});
     },
     handleAddition: function(tag) {
-        var tags = this.state.tags;
-        tags.push({
-            id: tags.length + 1,
-            text: tag
-        });
-        this.setState({tags: tags});
+        if (this.state.suggestions.indexOf(tag) > -1) {
+          var tags = this.state.tags;
+          tags.push({
+              id: tags.length + 1,
+              text: tag
+          });
+          this.setState({tags: tags});  
+        } else {
+          return false;
+        }
     },
     handleDrag: function(tag, currPos, newPos) {
         var tags = this.state.tags;
@@ -64,7 +68,7 @@ var App = React.createClass({
                     suggestions={Countries}
                     handleDelete={this.handleDelete}
                     handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag} />
+                    handleDrag={null} />
                 <hr />
                 <pre>
                     <code>{JSON.stringify(tags, null, 2)}</code>

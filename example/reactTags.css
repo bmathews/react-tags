@@ -17,12 +17,7 @@ div.ReactTags__tagInput input:focus {
     width: 100%;
     border: 1px solid #eee;
 }
-
-/* Styles for selected tags */
-div.ReactTags__selected {
-    float: left;
-}
-div.ReactTags__selected span.ReactTags__tag {
+span.ReactTags__tag {
     border: 1px solid #ddd;
     background: #eee;
     font-size: 12px;
@@ -32,7 +27,7 @@ div.ReactTags__selected span.ReactTags__tag {
     cursor: move;
     border-radius: 2px;
 }
-div.ReactTags__selected a.ReactTags__remove {
+a.ReactTags__remove {
     color: #aaa;
     margin-left: 5px;
     cursor: pointer;
