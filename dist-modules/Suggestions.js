@@ -28,17 +28,18 @@ var Suggestions = React.createClass({
         if (prevProps.selectedIndex > -1) {
             var el = React.findDOMNode(this);
             var activeEl = el.querySelector('.active');
+            if (activeEl) {
+                var scrollTop = el.scrollTop;
+                var scrollBottom = scrollTop + el.offsetHeight;
 
-            var scrollTop = el.scrollTop;
-            var scrollBottom = scrollTop + el.offsetHeight;
+                var elemTop = activeEl.offsetTop;
+                var elemBottom = elemTop + activeEl.offsetHeight;
 
-            var elemTop = activeEl.offsetTop;
-            var elemBottom = elemTop + activeEl.offsetHeight;
+                var isVisible = elemBottom <= scrollBottom && elemTop >= scrollTop;
 
-            var isVisible = elemBottom <= scrollBottom && elemTop >= scrollTop;
-
-            if (!isVisible) {
-                activeEl.scrollIntoView();
+                if (!isVisible) {
+                    activeEl.scrollIntoView();
+                }
             }
         }
     },
