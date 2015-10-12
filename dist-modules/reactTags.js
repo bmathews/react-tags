@@ -64,7 +64,7 @@ var ReactTags = React.createClass({
     handleChange: function handleChange(e) {
         var query = e.target.value.trim();
         var suggestions = this.props.suggestions.filter(function (item) {
-            return item.toLowerCase().search(query.toLowerCase()) === 0;
+            return item.toLowerCase().indexOf(query.toLowerCase()) > -1;
         });
 
         var selectedIndex = this.state.selectedIndex;
