@@ -48,6 +48,7 @@ var ReactTags = React.createClass({
             this.refs.input.getDOMNode().focus();
         }
     },
+
     getInitialState: function getInitialState() {
         return {
             suggestions: this.props.suggestions,

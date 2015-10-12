@@ -23,6 +23,26 @@ var Suggestions = React.createClass({
             __html: input.replace(r, "<mark>$&</mark>")
         };
     },
+
+    componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+        if (prevProps.selectedIndex > -1) {
+            var el = React.findDOMNode(this);
+            var activeEl = el.querySelector('.active');
+
+            var scrollTop = el.scrollTop;
+            var scrollBottom = scrollTop + el.offsetHeight;
+
+            var elemTop = activeEl.offsetTop;
+            var elemBottom = elemTop + activeEl.offsetHeight;
+
+            var isVisible = elemBottom <= scrollBottom && elemTop >= scrollTop;
+
+            if (!isVisible) {
+                activeEl.scrollIntoView();
+            }
+        }
+    },
+
     render: function render() {
         var props = this.props;
         var suggestions = this.props.suggestions.map((function (item, i) {
