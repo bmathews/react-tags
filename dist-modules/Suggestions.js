@@ -4,7 +4,7 @@ var React = require('react');
 
 // determines the min query length for which
 // suggestions are displayed
-var MIN_QUERY_LENGTH = 2;
+var MIN_QUERY_LENGTH = 1;
 
 var Suggestions = React.createClass({
     displayName: "Suggestions",
@@ -17,10 +17,8 @@ var Suggestions = React.createClass({
         handleHover: React.PropTypes.func.isRequired
     },
     markIt: function markIt(input, query) {
-        var escapedRegex = query.trim().replace(/[-\\^$*+?.()|[\]{}]/g, "\\$&");
-        var r = RegExp(escapedRegex, "gi");
         return {
-            __html: input.replace(r, "<mark>$&</mark>")
+            __html: input.split(query.trim()).join("<mark>" + query.trim() + "</mark>")
         };
     },
 
@@ -38,7 +36,13 @@ var Suggestions = React.createClass({
                 var isVisible = elemBottom <= scrollBottom && elemTop >= scrollTop;
 
                 if (!isVisible) {
-                    activeEl.scrollIntoView();
+                    if (elemTop >= scrollBottom) {
+                        // element is below scroll window, so align bottom
+                        el.scrollTop = elemTop + el.offsetHeight - activeEl.offsetHeight;
+                    } else {
+                        // element is above the scroll window, so align top
+                        el.scrollTop = elemTop;
+                    }
                 }
             }
         }

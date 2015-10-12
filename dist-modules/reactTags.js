@@ -169,10 +169,10 @@ var ReactTags = React.createClass({
         this.addTag(this.state.suggestions[i]);
     },
     handleSuggestionHover: function handleSuggestionHover(i, e) {
-        this.setState({
-            selectedIndex: i,
-            selectionMode: true
-        });
+        // this.setState({
+        //     selectedIndex: i,
+        //     selectionMode: true
+        // });
     },
     moveTag: function moveTag(id, afterId) {
         var tags = this.props.tags;
