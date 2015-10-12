@@ -26,9 +26,9 @@ var Suggestions = React.createClass({
 
     componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
         if (prevProps.selectedIndex > -1) {
-            var el = React.findDOMNode(this);
+            var el = React.findDOMNode(this).querySelector('ul');
             var activeEl = el.querySelector('.active');
-            if (activeEl) {
+            if (el && activeEl) {
                 var scrollTop = el.scrollTop;
                 var scrollBottom = scrollTop + el.offsetHeight;
 
