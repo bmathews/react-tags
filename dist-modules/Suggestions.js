@@ -38,7 +38,7 @@ var Suggestions = React.createClass({
                 if (!isVisible) {
                     if (elemBottom >= scrollBottom) {
                         // element is below scroll window, so align bottom
-                        el.scrollTop = elemTop - el.offsetHeight - activeEl.offsetHeight;
+                        el.scrollTop = elemBottom - el.offsetHeight - activeEl.offsetHeight;
                     } else {
                         // element is above the scroll window, so align top
                         el.scrollTop = elemTop;
